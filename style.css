@@ -1,0 +1,46 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    -webkit-user-drag: none;
+}
+
+html, body {
+    color: red;
+    background-color: black;
+}
+
+p, h1 {
+    user-select: none;
+}
+
+#contents {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inputBox{
+    background-color: black;
+    color: red;
+    border: solid 2px red;
+}
+
+#submitBtn{
+    background-color: black;
+    color: red;
+    border: solid 0px red;
+}
+
+
+#submit:hover {
+    background-color: black;
+    color: red;
+    border: solid 0px red;
+    cursor: pointer;
+}
+
+#answer {
+    margin: 20px;
+    display: none;
+}
