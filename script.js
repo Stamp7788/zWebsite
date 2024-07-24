@@ -4,7 +4,7 @@ const submitBtn = document.getElementById("submitBtn");
 const pageText = document.getElementById("pageText");
 
 submitBtn.addEventListener('click', ()=> {
-    if(inputBox.value.toLowerCase() === "hello") {
+    if(inputBox.value.toLowerCase() === "nectar") {
         pageText.style.display = "inherit";
         console.log("First if statement works");
     }
