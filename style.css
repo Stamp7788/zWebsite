@@ -4,11 +4,11 @@
 }
 
 html, body {
-    color: red;
-    background-color: black;
+    color: white;
+    background-color: rgb(134, 141, 236);
 }
 
-p, h1 {
+h1 {
     user-select: none;
 }
 
@@ -21,26 +21,46 @@ p, h1 {
 }
 
 #inputBox{
-    background-color: black;
-    color: red;
-    border: solid 2px red;
+    background-color: rgb(134, 141, 236);
+    color: white;
+    border: solid 2px white;
 }
 
 #submitBtn{
-    background-color: black;
-    color: red;
-    border: solid 0px red;
+    background-color: rgb(134, 141, 236);
+    color: white;
+    border: solid 0px white;
 }
 
 
 #submit:hover {
-    background-color: black;
-    color: red;
-    border: solid 0px red;
+    background-color: rgb(134, 141, 236);
+    color: white;
+    border: solid 0px white;
     cursor: pointer;
 }
 
 #answer {
     margin: 20px;
     display: none;
+}
+
+#pageText {
+    display: none;
+    margin-left: 110px;
+    margin-right: 110px;
+    justify-content: center;
+    text-align: center;
+}
+
+#hollyBlueButterflyImg {
+    margin: 40px;
+    height: 300px;
+    width: 300px; 
+}
+
+#springWhiteButterflyImg {
+    margin: 80px;
+    height: 300px;
+    width: 300px;
 }
