@@ -1,33 +1,121 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Puzzle</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.35">
+  <title>W/L Application</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="apple-touch-icon" href="WL.jpeg">
+  <link rel="icon" type="image/jpeg" href="WL.jpeg">
 </head>
-    <body>
-        <div id="contents">
-            <h1 id="welcomeH1">welcome to your second puzzle</h1><br><br>
-            <div id="inputBoxDiv">
-                <p>password:</p><input id="inputBox" type="text" placeholder="text here"><input id="submitBtn" type="submit">
-            </div>
-            <div id="answer">Incorrect</div>
-            <br>
-            <div id="pageText" style="display: none;">
-                <p id="text">
-                    Zlqjv duh euljkw eoxh. Ihpdohv kdyh eodfn zlqj hgjhv. Xqghuvlghv sdoh eoxh zlwk vpdoo eodfn vsrwv zklfk glvwlqjxlvk wkhp iurp Frpprq Eoxh.<br><br>
-                    Wkh Kroob Eoxh lv hdvlob lghqwlilhg lq hduob vsulqj, dv lw hphujhv zhoo ehiruh rwkhu eoxh exwwhuiolhv. Lw whqgv wr iob kljk durxqg exvkhv dqg wuhhv, zkhuhdv rwkhu judvvodqg eoxhv xvxdoob vwdb qhdu jurxqg ohyho. Lw lv pxfk wkh frpprqhvw eoxh irxqg lq sdunv dqg jdughqv zkhuh lw frqjuhjdwhv durxqg Kroob (lq vsulqj) dqg Lyb (lq odwh vxpphu).<br><br>
-                    Wkh Kroob Eoxh lv zlghvsuhdg exw xqghujrhv odujh ioxfwxdwlrqv lq qxpehuv iurp bhdu wr bhdu. Lw kdv hasdqghg qruwkzdugv lq uhfhqw bhduv dqg kdv frorqlvhg sduwv ri plgodqg dqg qruwkhuq Hqjodqg.<br><br>
-                    Wkh oduydh ihhg suhgrplqdqwob rq wkh iorzhu exgv, ehuulhv dqg whuplqdo ohdyhv ri Kroob (Loha dtxlirolxp) lq wkh vsulqj jhqhudwlrq, dqg Lyb (Khghud khola) lq wkh vxpphu jhqhudwlrq.<br><br>
-                    Wkh vsulqj jhqhudwlrq fdq frpsohwh oduydo ghyhorsphqw hqwluhob rq ohdyhv ri pdoh Kroob exvkhv, dowkrxjk ihpdoh exvkhv duh suhihuuhg.<br><br>
-                    Wkhb dovr xvh d zlgh udqjh ri rwkhu zlog dqg jdughq sodqwv lqfoxglqj Vslqgoh (Hxrqbpxv hxursdhxv), grjzrrgv (Fruqxv vss.), vqrzehuulhv (Vbpskrulfdusrv vss), jruvhv (Xoha vss.), dqg Eudpeoh (Uxexv iuxwlfrvxv). Brxu qhaw sdvvzrug lv: Srqwld vlvbpeull<br><br>
-                </p>
-                <img id="hollyBlueButterflyImg" src="hollyBlueButterfly.png" alt="holly blue butterfly">
-                <h2>You have collected 1/5 butterflies</h2>
-                <h2>Your next puzzle will be available shortly</h2>
-            </div>
-        </div>
-    </body>
-    <script src="script.js"></script>
+
+<body>
+  <div id="buttonContainer">
+    <button id="WButton" class="button">W</button>
+    <button id="LButton" class="button">L</button>
+  </div>
+  <div id="displayLetterContainer"></div>
+  <div id="displayLetter">here</div>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+    * {
+      margin: 10px;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #buttonContainer {
+      position: absolute;
+      z-index: 1;
+    }
+
+    #displayLetterContainer {
+      position: relative;
+      z-index: 1;
+      visibility: hidden;
+    }
+
+    .button {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 10em;
+      height: 3em;
+      width: 3em;
+      border-radius: 20px;
+    }
+
+    #WButton {
+      border: solid 20px #005700;
+      background-color: green;
+    }
+
+    #LButton {
+      border: solid 20px #b80000;
+      background-color: red;
+    }
+
+    #displayLetter {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 100em;
+      visibility: hidden;
+      color: white;
+    }
+  </style>
+  <script>
+    let buttonContainer = document.getElementById("buttonContainer");
+    let displayLetterContainer = document.getElementById("displayLetterContainer");
+    let displayLetter = document.getElementById("displayLetter");
+    const WButton = document.getElementById("WButton");
+    const LButton = document.getElementById("LButton");
+    const body = document.body;
+
+    // Audio
+    let wAffect = new Audio("wAffect.mp3");
+    let lAffect = new Audio("lAffect.mp3");
+
+    function changeVisibility() {
+      document.getElementById("displayLetterContainer").style.visibility = "visible";
+      document.getElementById("displayLetter").style.visibility = "visible";
+      document.getElementById("buttonContainer").style.visibility = "hidden";
+    }
+
+    function mainScreen() {
+      displayLetter.addEventListener('click', () => {
+        document.getElementById("displayLetterContainer").style.visibility = "hidden";
+        document.getElementById("displayLetter").style.visibility = "hidden";
+        document.getElementById("buttonContainer").style.visibility = "visible";
+        body.style.backgroundColor = "white";
+        wAffect.pause();
+        lAffect.pause();
+      });
+    }
+
+    WButton.addEventListener('click', () => {
+      displayLetter.textContent = "W";
+      body.style.backgroundColor = "green";
+      changeVisibility();
+      wAffect.play();
+      mainScreen();
+    });
+
+    LButton.addEventListener('click', () => {
+      displayLetter.textContent = "L";
+      body.style.backgroundColor = "red";
+      changeVisibility();
+      lAffect.play();
+      mainScreen();
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+
 </html>
